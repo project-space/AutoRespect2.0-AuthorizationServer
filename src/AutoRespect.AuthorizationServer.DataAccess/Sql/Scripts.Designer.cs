@@ -72,5 +72,12 @@ namespace AutoRespect.AuthorizationServer.DataAccess.Sql {
                 return ResourceManager.GetString("UserGetter_Get", resourceCulture);
             }
         }
+
+        internal static string UserGetter_Save {
+            get {
+                return ResourceManager.GetString("UserGetter_Save", resourceCulture);
+            }
+        }
+
     }
 }

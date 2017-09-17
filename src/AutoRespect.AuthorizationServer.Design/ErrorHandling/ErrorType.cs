@@ -9,6 +9,9 @@ namespace AutoRespect.AuthorizationServer.Design.ErrorHandling
         UserNotFound = 1,
         UserLoginCantBeNullOrEmpty = 2,
         UserPasswordCantBeNullOrEmpty = 3,
-        WrongLoginOrPassword = 4
+        WrongLoginOrPassword = 4,
+        EmailCantBeNullOrEmpty = 5,
+        WrongEmailFormat = 6,
+        LoginIsBussy = 7
     }
 }
