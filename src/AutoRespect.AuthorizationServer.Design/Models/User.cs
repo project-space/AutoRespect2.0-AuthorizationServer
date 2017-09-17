@@ -1,9 +1,11 @@
-﻿namespace AutoRespect.AuthorizationServer.Design.Models
+﻿using AutoRespect.AuthorizationServer.Design.Primitives;
+
+namespace AutoRespect.AuthorizationServer.Design.Models
 {
     public class User
     {
         public int Id { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
+        public UserLogin Login { get; set; }
+        public UserPassword Password { get; set; }
     }
 }

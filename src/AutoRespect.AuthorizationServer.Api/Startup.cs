@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using AutoRespect.AuthorizationServer.Design.Interfaces.DataAccess;
+using AutoRespect.AuthorizationServer.DataAccess;
+using AutoRespect.AuthorizationServer.Design.Interfaces.Business;
+using AutoRespect.AuthorizationServer.Business;
 
 namespace AutoRespect.AuthorizationServer.Api
 {
@@ -20,13 +18,19 @@ namespace AutoRespect.AuthorizationServer.Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            ConfigureIoC(services);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void ConfigureIoC(IServiceCollection services) => services
+            .AddSingleton<IUserGetter, UserGetter>()
+            .AddSingleton<IUserPasswordAuditor, UserPasswordAuditor>()
+            .AddSingleton<IAuthenticator, Authenticator>()
+            .AddSingleton<ITokenIssuer, TokenIssuer>();
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
