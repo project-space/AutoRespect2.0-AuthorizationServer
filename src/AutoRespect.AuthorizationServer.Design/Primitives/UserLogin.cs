@@ -17,9 +17,6 @@ namespace AutoRespect.AuthorizationServer.Design.Primitives
         }
 
         //FOR DAPPER QUERIES
-        public static implicit operator UserLogin (string login)
-        {
-            return new UserLogin(login);
-        }
+        public static implicit operator UserLogin(string login) => new UserLogin(login);
     }
 }

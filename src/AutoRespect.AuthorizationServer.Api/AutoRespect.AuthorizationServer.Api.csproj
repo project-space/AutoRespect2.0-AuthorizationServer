@@ -2,14 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="docker-compose.ci.build.yml" />
-    <None Remove="docker-compose.override.yml" />
-    <None Remove="docker-compose.yml" />
-  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\" />

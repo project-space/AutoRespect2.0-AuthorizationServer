@@ -27,6 +27,8 @@ namespace AutoRespect.AuthorizationServer.Api
 
         public void ConfigureIoC(IServiceCollection services) => services
             .AddSingleton<IUserGetter, UserGetter>()
+            .AddSingleton<IUserSaver, UserSaver>()
+            .AddSingleton<IUserRegistrar, UserRegistrar>()
             .AddSingleton<IUserPasswordAuditor, UserPasswordAuditor>()
             .AddSingleton<IAuthenticator, Authenticator>()
             .AddSingleton<ITokenIssuer, TokenIssuer>();
