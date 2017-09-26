@@ -2,9 +2,8 @@
 
 namespace AutoRespect.AuthorizationServer.Design.Models
 {
-    public class User
+    public class Credentials
     {
-        public int Id { get; set; }
         public Login Login { get; set; }
         public Password Password { get; set; }
     }

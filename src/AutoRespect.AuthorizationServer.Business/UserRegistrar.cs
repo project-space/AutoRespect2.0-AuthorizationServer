@@ -1,10 +1,10 @@
 using AutoRespect.AuthorizationServer.Design.Interfaces.Business;
-using System;
-using AutoRespect.AuthorizationServer.Design.ErrorHandling;
 using AutoRespect.AuthorizationServer.Design.Primitives;
 using System.Threading.Tasks;
 using AutoRespect.AuthorizationServer.Design.Interfaces.DataAccess;
 using AutoRespect.AuthorizationServer.Design.Models;
+using AutoRespect.Infrastructure.ErrorHandling;
+using System.Linq;
 
 namespace AutoRespect.AuthorizationServer.Business
 {
@@ -24,37 +24,32 @@ namespace AutoRespect.AuthorizationServer.Business
             this.tokenIssuer = tokenIssuer;
         }
 
-        public async Task<Result<ErrorType, Token>> Register(UserCredentials credentials)
+        public async Task<Result<string>> Register(Credentials credentials)
         {
-            var login = UserLogin.Create (credentials.Login);
-            var password = UserPassword.Create (credentials.Password);
+            var loginIsBussy = await LoginIsBussy(credentials.Login);
+            if (loginIsBussy.IsFailure) return loginIsBussy.Failures;
+            if (loginIsBussy.Value) return new LoginAlreadyBussy(credentials.Login);
 
-            if (login.IsFailure) return login.Failure;
-            if (password.IsFailure) return password.Failure; 
-
-            var loginIsBussy = await LoginIsBussy(login.Success);
-            if (loginIsBussy.IsFailure) return loginIsBussy.Failure;
-            if (loginIsBussy.Success) return ErrorType.LoginIsBussy;
-
-            var user = new User { Login = login.Success, Password = password.Success };
+            var user = new User { Login = credentials.Login, Password = credentials.Password };
             var save = await userSaver.Save (user);
 
-            if (save.IsFailure) return save.Failure;
+            if (save.IsFailure) return save.Failures;
 
-            user.Id = save.Success;
+            user.Id = save.Value;
 
             return await tokenIssuer.Release(user);
         }
 
-        private async Task<Result<ErrorType, bool>> LoginIsBussy(UserLogin login)
+        private async Task<Result<bool>> LoginIsBussy(Login login)
         {
             var user = await userGetter.Get(login);
             if (user.IsFailure) 
             {
-                if (user.Failure == ErrorType.UserNotFound)
+                if (user.Failures.Any(e => e is UserNotFound))
                     return false;
 
-                return user.Failure;
+                return 
+                    user.Failures;
             }
 
             return true;

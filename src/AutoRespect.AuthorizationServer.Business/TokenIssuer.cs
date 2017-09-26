@@ -1,23 +1,22 @@
-﻿using AutoRespect.AuthorizationServer.Design.Interfaces.Business;
-using System;
-using AutoRespect.AuthorizationServer.Design.ErrorHandling;
-using AutoRespect.AuthorizationServer.Design.Models;
+﻿using System;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
+using AutoRespect.Infrastructure.ErrorHandling;
+using AutoRespect.AuthorizationServer.Design.Interfaces.Business;
+using AutoRespect.AuthorizationServer.Design.Models;
 
 namespace AutoRespect.AuthorizationServer.Business
 {
     public class TokenIssuer : ITokenIssuer
     {
-        public Task<Result<ErrorType, Token>> Release(User user)
+        public Task<Result<string>> Release(User user)
         {
             var identity = CreateClaims(user);
 
-            var jwt = new JwtSecurityToken(
-                
+            var jwt = new JwtSecurityToken(                
                 issuer: AuthOptions.Issuer,
                 audience: AuthOptions.Audience,
                 notBefore: DateTime.UtcNow,
@@ -29,10 +28,7 @@ namespace AutoRespect.AuthorizationServer.Business
             return Task.FromResult(CreateToken(encodedJwt));
         }
 
-        private Result<ErrorType, Token> CreateToken(string encodedJwt) => 
-            new Token {
-                Value = encodedJwt
-            };
+        private Result<string> CreateToken(string encodedJwt) => encodedJwt;
 
         private ClaimsIdentity CreateClaims(User user)
         {
