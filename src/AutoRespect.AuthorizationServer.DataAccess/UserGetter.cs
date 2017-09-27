@@ -11,7 +11,7 @@ namespace AutoRespect.AuthorizationServer.DataAccess
 {
     public class UserGetter : IUserGetter
     {
-        private readonly string _connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=AutoRespect.AutorizationServer;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private readonly string _connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=AutoRespect.IdentityServer;Integrated Security=SSPI;";
 
         public async Task<Result<User>> Get(Login login)
         {

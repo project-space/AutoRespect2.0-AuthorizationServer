@@ -1,16 +1,16 @@
-IF EXISTS (select 1 from Users u where u.Id = @Id)
+IF EXISTS (select 1 from Account where Id = @Id)
 BEGIN
     UPDATE
-        Users
+        Account
     SET
-        [Password] = @Password,
-        [Login] = @Login
+        Password = @Password,
+        Login = @Login
     WHERE
         Id = @Id
 END
 ELSE BEGIN
-    INSERT INTO Users 
-        ([Login], [Password])
+    INSERT INTO Account
+        (Login, Password)
     VALUES
         (@Login, @Password)
 

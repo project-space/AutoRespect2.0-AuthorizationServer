@@ -5,6 +5,7 @@ using AutoRespect.AuthorizationServer.Design.Interfaces.DataAccess;
 using AutoRespect.AuthorizationServer.Design.Models;
 using AutoRespect.Infrastructure.ErrorHandling;
 using System.Linq;
+using AutoRespect.Infrastructure.OAuth.Jwt;
 
 namespace AutoRespect.AuthorizationServer.Business
 {
@@ -12,12 +13,12 @@ namespace AutoRespect.AuthorizationServer.Business
     {
         private readonly IUserSaver userSaver;
         private readonly IUserGetter userGetter;
-        private readonly ITokenIssuer tokenIssuer;
+        private readonly IJwtIssuer tokenIssuer;
 
         public UserRegistrar(
             IUserSaver userSaver,
             IUserGetter userGetter,
-            ITokenIssuer tokenIssuer)
+            IJwtIssuer tokenIssuer)
         {
             this.userSaver = userSaver;
             this.userGetter = userGetter;
@@ -37,9 +38,12 @@ namespace AutoRespect.AuthorizationServer.Business
 
             user.Id = save.Value;
 
-            return await tokenIssuer.Release(user);
+            return tokenIssuer.Release(new JwtPayload {
+                AccountId = user.Id
+            });
         }
 
+        //TODO: Move to LoginIsBussyChecker
         private async Task<Result<bool>> LoginIsBussy(Login login)
         {
             var user = await userGetter.Get(login);

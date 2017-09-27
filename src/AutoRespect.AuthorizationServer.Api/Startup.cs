@@ -6,6 +6,7 @@ using AutoRespect.AuthorizationServer.Design.Interfaces.DataAccess;
 using AutoRespect.AuthorizationServer.DataAccess;
 using AutoRespect.AuthorizationServer.Design.Interfaces.Business;
 using AutoRespect.AuthorizationServer.Business;
+using AutoRespect.Infrastructure.OAuth.Jwt;
 
 namespace AutoRespect.AuthorizationServer.Api
 {
@@ -31,7 +32,7 @@ namespace AutoRespect.AuthorizationServer.Api
             .AddSingleton<IUserRegistrar, UserRegistrar>()
             .AddSingleton<IUserPasswordAuditor, UserPasswordAuditor>()
             .AddSingleton<IAuthenticator, Authenticator>()
-            .AddSingleton<ITokenIssuer, TokenIssuer>();
+            .AddSingleton<IJwtIssuer, TokenIssuer>();
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\submodules\AutoRespect2.0-Infrastructure\src\AutoRespect.Infrastructure.OAuth.Jwt\AutoRespect.Infrastructure.OAuth.Jwt.csproj" />
     <ProjectReference Include="..\AutoRespect.AuthorizationServer.Design\AutoRespect.AuthorizationServer.Design.csproj" />
   </ItemGroup>
 

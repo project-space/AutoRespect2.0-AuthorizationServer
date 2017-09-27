@@ -1,5 +1,5 @@
 ﻿SELECT TOP 1 * 
 	FROM 
-		dbo.Users 
+		dbo.Account 
 	WHERE 
 		Login = @Login

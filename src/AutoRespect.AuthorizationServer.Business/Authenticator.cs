@@ -3,6 +3,7 @@ using AutoRespect.AuthorizationServer.Design.Interfaces.Business;
 using AutoRespect.AuthorizationServer.Design.Models;
 using AutoRespect.AuthorizationServer.Design.Interfaces.DataAccess;
 using AutoRespect.Infrastructure.ErrorHandling;
+using AutoRespect.Infrastructure.OAuth.Jwt;
 
 namespace AutoRespect.AuthorizationServer.Business
 {
@@ -10,12 +11,12 @@ namespace AutoRespect.AuthorizationServer.Business
     {
         private readonly IUserPasswordAuditor passwordAuditor;
         private readonly IUserGetter userGetter;
-        private readonly ITokenIssuer tokenIssuer;
+        private readonly IJwtIssuer tokenIssuer;
 
         public Authenticator(
             IUserPasswordAuditor passwordAuditor,
             IUserGetter userGetter,
-            ITokenIssuer tokenIssuer)
+            IJwtIssuer tokenIssuer)
         {
             this.passwordAuditor = passwordAuditor;
             this.userGetter = userGetter;
@@ -30,7 +31,10 @@ namespace AutoRespect.AuthorizationServer.Business
             var user = await userGetter.Get(credentials.Login.Value);
             if (user.IsFailure) return user.Failures;
 
-            return await tokenIssuer.Release(user.Value);
+            return tokenIssuer.Release(new JwtPayload
+            {
+                AccountId = user.Value.Id
+            });
         }
     }
 }
