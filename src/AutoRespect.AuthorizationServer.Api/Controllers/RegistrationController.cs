@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AutoRespect.AuthorizationServer.Design.Models;
 using AutoRespect.AuthorizationServer.Design.Interfaces.Business;
+using AutoRespect.Infrastructure.ErrorHandling.AspNetCore;
 
 namespace AutoRespect.AuthorizationServer.Api.Controllers
 {
@@ -16,13 +17,8 @@ namespace AutoRespect.AuthorizationServer.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Credentials credentials)
-        {
-            var registrationResult = await userRegistrar.Register(credentials);
-            if (registrationResult.IsFailure) 
-                return BadRequest(registrationResult.Failures);
-            else
-                return Ok(registrationResult.Value);
-        }
+        public async Task<IActionResult> Post([FromBody] Credentials credentials) => (await userRegistrar
+            .Register(credentials))
+            .AsActionResult();            
     }
 }

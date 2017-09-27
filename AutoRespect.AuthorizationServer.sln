@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoRespect.Infrastructure.ErrorHandling", "submodules\AutoRespect2.0-Infrastructure\src\AutoRespect.Infrastructure.ErrorHandling\AutoRespect.Infrastructure.ErrorHandling.csproj", "{2AD15FF3-DB51-4C73-9A51-9EDF988B7E38}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoRespect.Infrastructure.ErrorHandling.AspNetCore", "submodules\AutoRespect2.0-Infrastructure\src\AutoRespect.Infrastructure.ErrorHandling.AspNetCore\AutoRespect.Infrastructure.ErrorHandling.AspNetCore.csproj", "{F6198BEA-A0C9-4371-A730-44D83D4D8B98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{2AD15FF3-DB51-4C73-9A51-9EDF988B7E38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AD15FF3-DB51-4C73-9A51-9EDF988B7E38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AD15FF3-DB51-4C73-9A51-9EDF988B7E38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6198BEA-A0C9-4371-A730-44D83D4D8B98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6198BEA-A0C9-4371-A730-44D83D4D8B98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6198BEA-A0C9-4371-A730-44D83D4D8B98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6198BEA-A0C9-4371-A730-44D83D4D8B98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,6 +71,7 @@ Global
 		{61DB8DD2-C10D-4EE5-8003-3010306E25D3} = {4067622D-2875-41F4-9386-2BADFEEA767C}
 		{4FC4D3E8-0248-4E7F-8F8C-BA65539FB6AD} = {003C7D25-2EEB-4807-8A90-EA05C3D7D520}
 		{2AD15FF3-DB51-4C73-9A51-9EDF988B7E38} = {4FC4D3E8-0248-4E7F-8F8C-BA65539FB6AD}
+		{F6198BEA-A0C9-4371-A730-44D83D4D8B98} = {4FC4D3E8-0248-4E7F-8F8C-BA65539FB6AD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CE4A5909-EF45-4571-B14E-0095528EFB45}

@@ -200,6 +200,8 @@
     <Folder Include="Properties\" />
     <Folder Include="Migrations" />
     <Folder Include="Programmable Objects" />
+    <Folder Include="Pre-Deployment\" />
+    <Folder Include="Post-Deployment\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Migrations\1_CreateTableUser.sql" />

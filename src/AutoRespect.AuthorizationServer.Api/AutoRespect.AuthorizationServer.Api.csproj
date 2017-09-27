@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\submodules\AutoRespect2.0-Infrastructure\src\AutoRespect.Infrastructure.ErrorHandling.AspNetCore\AutoRespect.Infrastructure.ErrorHandling.AspNetCore.csproj" />
     <ProjectReference Include="..\AutoRespect.AuthorizationServer.Business\AutoRespect.AuthorizationServer.Business.csproj" />
     <ProjectReference Include="..\AutoRespect.AuthorizationServer.DataAccess\AutoRespect.AuthorizationServer.DataAccess.csproj" />
     <ProjectReference Include="..\AutoRespect.AuthorizationServer.Design\AutoRespect.AuthorizationServer.Design.csproj" />
