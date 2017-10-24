@@ -21,6 +21,7 @@ namespace AutoRespect.AuthorizationServer.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddMvc();
 
             ConfigureIoC(services);
@@ -41,6 +42,13 @@ namespace AutoRespect.AuthorizationServer.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(config =>
+            {
+                config.AllowAnyHeader();
+                config.AllowAnyMethod();
+                config.AllowAnyOrigin();
+                config.AllowCredentials();
+            });
             app.UseMvc();
         }
     }
