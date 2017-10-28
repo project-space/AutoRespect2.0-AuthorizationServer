@@ -1,10 +1,9 @@
+using System.Data.SqlClient;
+using System.Threading.Tasks;
 using AutoRespect.AuthorizationServer.Design.Interfaces.DataAccess;
 using AutoRespect.AuthorizationServer.Design.Models;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
-using Dapper;
 using AutoRespect.Infrastructure.ErrorHandling;
-using static AutoRespect.AuthorizationServer.DataAccess.Sql.Scripts;
+using Dapper;
 
 namespace AutoRespect.AuthorizationServer.DataAccess
 {
@@ -14,15 +13,35 @@ namespace AutoRespect.AuthorizationServer.DataAccess
 
         public async Task<Result<int>> Save(User user)
         {
+            const string sqlScript = @"
+                if exists (select 1 from Account where Id = @Id) 
+                begin
+                    update
+                        Account
+                    set
+                        Password = @Password,
+                        Login = @Login
+                    where
+                        Id = @Id
+                end
+                else begin
+                    insert into Account
+                        (Login, Password)
+                    values
+                        (@Login, @Password)
+
+                    set @Id = scope_identity()
+                end
+
+                select @Id";
+
             using (var connection = new SqlConnection(_connectionString))
             {
-                return await connection.QueryFirstAsync<int>(
-                    UserSaver_Save, 
-                    new { 
-                        Id = user.Id,
-                        Login = user.Login.Value,
-                        Password = user.Password.Value 
-                    });
+                return await connection.QueryFirstAsync<int>(sqlScript, new { 
+                    Id       = user.Id,
+                    Login    = user.Login.Value,
+                    Password = user.Password.Value 
+                });
             }
         }
     }

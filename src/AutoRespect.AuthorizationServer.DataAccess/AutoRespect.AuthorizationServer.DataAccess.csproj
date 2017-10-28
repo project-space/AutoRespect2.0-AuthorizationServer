@@ -12,19 +12,4 @@
     <ProjectReference Include="..\AutoRespect.AuthorizationServer.Design\AutoRespect.AuthorizationServer.Design.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Sql\Scripts.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Scripts.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Sql\Scripts.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Scripts.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-
 </Project>
