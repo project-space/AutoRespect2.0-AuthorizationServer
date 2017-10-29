@@ -1,14 +1,17 @@
-using AutoRespect.AuthorizationServer.Design.Interfaces.Business;
-using AutoRespect.AuthorizationServer.Design.Primitives;
+using System.Linq;
 using System.Threading.Tasks;
+using AutoRespect.AuthorizationServer.Design.Interfaces.Business;
 using AutoRespect.AuthorizationServer.Design.Interfaces.DataAccess;
 using AutoRespect.AuthorizationServer.Design.Models;
+using AutoRespect.AuthorizationServer.Design.Primitives;
+using AutoRespect.Infrastructure.DI.Design;
+using AutoRespect.Infrastructure.DI.Design.Attributes;
 using AutoRespect.Infrastructure.ErrorHandling;
-using System.Linq;
 using AutoRespect.Infrastructure.OAuth.Jwt;
 
 namespace AutoRespect.AuthorizationServer.Business
 {
+    [DI(LifeCycleType.Singleton)]
     public class UserRegistrar : IUserRegistrar
     {
         private readonly IUserSaver userSaver;

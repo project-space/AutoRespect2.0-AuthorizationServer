@@ -1,6 +1,6 @@
-﻿using AutoRespect.AuthorizationServer.Design.Models;
+﻿using System.Threading.Tasks;
+using AutoRespect.AuthorizationServer.Design.Models;
 using AutoRespect.Infrastructure.ErrorHandling;
-using System.Threading.Tasks;
 
 namespace AutoRespect.AuthorizationServer.Design.Interfaces.Business
 {

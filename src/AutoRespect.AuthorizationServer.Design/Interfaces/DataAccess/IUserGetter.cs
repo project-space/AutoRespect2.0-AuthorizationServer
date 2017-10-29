@@ -11,11 +11,11 @@ namespace AutoRespect.AuthorizationServer.Design.Interfaces.DataAccess
     }
     public class UserNotFound : Error
     {
-        public Login Login { get; private set; }
+        public string Login { get; private set; }
 
         public UserNotFound(Login login) : base("AA5E0914-E4E2-4F27-8592-90980F326D1F", $"User with login [{login.Value}] not found")
         {
-            Login = login;
+            Login = login.Value;
         }
     }
 }
