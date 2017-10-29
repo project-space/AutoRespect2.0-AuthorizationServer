@@ -9,6 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\submodules\AutoRespect2.0-Infrastructure\src\AutoRespect.Infrastructure.DataAccess.Design\AutoRespect.Infrastructure.DataAccess.Design.csproj" />
+    <ProjectReference Include="..\..\submodules\AutoRespect2.0-Infrastructure\src\AutoRespect.Infrastructure.DI.Design\AutoRespect.Infrastructure.DI.Design.csproj" />
     <ProjectReference Include="..\AutoRespect.AuthorizationServer.Design\AutoRespect.AuthorizationServer.Design.csproj" />
   </ItemGroup>
 
