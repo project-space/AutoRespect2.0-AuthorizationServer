@@ -21,6 +21,7 @@
     <ProjectReference Include="..\..\submodules\AutoRespect2.0-Infrastructure\src\AutoRespect.Infrastructure.DataAccess\AutoRespect.Infrastructure.DataAccess.csproj" />
     <ProjectReference Include="..\..\submodules\AutoRespect2.0-Infrastructure\src\AutoRespect.Infrastructure.DI\AutoRespect.Infrastructure.DI.csproj" />
     <ProjectReference Include="..\..\submodules\AutoRespect2.0-Infrastructure\src\AutoRespect.Infrastructure.ErrorHandling.AspNetCore\AutoRespect.Infrastructure.ErrorHandling.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\submodules\AutoRespect2.0-Infrastructure\src\AutoRespect.Infrastructure.ServiceDiscovery\AutoRespect.Infrastructure.ServiceDiscovery.csproj" />
     <ProjectReference Include="..\AutoRespect.AuthorizationServer.Business\AutoRespect.AuthorizationServer.Business.csproj" />
     <ProjectReference Include="..\AutoRespect.AuthorizationServer.DataAccess\AutoRespect.AuthorizationServer.DataAccess.csproj" />
     <ProjectReference Include="..\AutoRespect.AuthorizationServer.Design\AutoRespect.AuthorizationServer.Design.csproj" />

@@ -1,4 +1,3 @@
-using System.Data.SqlClient;
 using System.Threading.Tasks;
 using AutoRespect.AuthorizationServer.Design.Interfaces.DataAccess;
 using AutoRespect.AuthorizationServer.Design.Models;
@@ -6,7 +5,6 @@ using AutoRespect.Infrastructure.DataAccess.Design;
 using AutoRespect.Infrastructure.DI.Design;
 using AutoRespect.Infrastructure.DI.Design.Attributes;
 using AutoRespect.Infrastructure.ErrorHandling;
-using Dapper;
 
 namespace AutoRespect.AuthorizationServer.DataAccess
 {
