@@ -9,7 +9,7 @@ using AutoRespect.Infrastructure.ErrorHandling;
 
 namespace AutoRespect.AuthorizationServer.DataAccess
 {
-    [DI(LifeCycleType.Singleton)]
+    [DI(LifeCycle.Singleton)]
     public class UserGetter : IUserGetter
     {
         private readonly IIdentityServerDb db;

@@ -8,7 +8,7 @@ using AutoRespect.Infrastructure.ErrorHandling;
 
 namespace AutoRespect.AuthorizationServer.Business
 {
-    [DI(LifeCycleType.Singleton)]
+    [DI(LifeCycle.Singleton)]
     public class UserPasswordAuditor : IUserPasswordAuditor
     {
         private readonly IUserGetter userGetter;

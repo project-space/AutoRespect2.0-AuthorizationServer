@@ -9,7 +9,7 @@ using AutoRespect.Infrastructure.OAuth.Jwt;
 
 namespace AutoRespect.AuthorizationServer.Business
 {
-    [DI(LifeCycleType.Singleton)]
+    [DI(LifeCycle.Singleton)]
     public class Authenticator : IAuthenticator
     {
         private readonly IUserPasswordAuditor passwordAuditor;

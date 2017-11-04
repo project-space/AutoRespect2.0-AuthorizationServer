@@ -11,7 +11,7 @@ using AutoRespect.Infrastructure.OAuth.Jwt;
 
 namespace AutoRespect.AuthorizationServer.Business
 {
-    [DI(LifeCycleType.Singleton)]
+    [DI(LifeCycle.Singleton)]
     public class UserRegistrar : IUserRegistrar
     {
         private readonly IUserSaver userSaver;
