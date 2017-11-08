@@ -6,7 +6,7 @@ using AutoRespect.AuthorizationServer.Design.Models;
 using AutoRespect.AuthorizationServer.Design.Primitives;
 using AutoRespect.Infrastructure.DI.Design;
 using AutoRespect.Infrastructure.DI.Design.Attributes;
-using AutoRespect.Infrastructure.ErrorHandling;
+using AutoRespect.Infrastructure.Errors.Design;
 using AutoRespect.Infrastructure.OAuth.Jwt;
 
 namespace AutoRespect.AuthorizationServer.Business
@@ -28,34 +28,38 @@ namespace AutoRespect.AuthorizationServer.Business
             this.tokenIssuer = tokenIssuer;
         }
 
-        public async Task<Result<string>> Register(Credentials credentials)
+        public async Task<R<string>> Register(Credentials credentials)
         {
             var loginIsBussy = await LoginIsBussy(credentials.Login);
             if (loginIsBussy.IsFailure) return loginIsBussy.Failures;
             if (loginIsBussy.Value) return new LoginAlreadyBussy(credentials.Login);
 
             var user = new User { Login = credentials.Login, Password = credentials.Password };
-            var save = await userSaver.Save (user);
+            var save = await userSaver.Save(user);
 
             if (save.IsFailure) return save.Failures;
 
             user.Id = save.Value;
 
-            return tokenIssuer.Release(new JwtPayload {
-                AccountId = user.Id
-            });
+            var claims = new JwtClaims
+            {
+                AccountId = user.Id,
+                AccountLogin = user.Login.Value
+            };
+
+            return tokenIssuer.Release(claims);
         }
 
         //TODO: Move to LoginIsBussyChecker
-        private async Task<Result<bool>> LoginIsBussy(Login login)
+        private async Task<R<bool>> LoginIsBussy(Login login)
         {
             var user = await userGetter.Get(login);
-            if (user.IsFailure) 
+            if (user.IsFailure)
             {
                 if (user.Failures.Any(e => e is UserNotFound))
                     return false;
 
-                return 
+                return
                     user.Failures;
             }
 

@@ -1,5 +1,5 @@
-﻿using AutoRespect.Infrastructure.ErrorHandling;
-using System;
+﻿using System;
+using AutoRespect.Infrastructure.Errors.Design;
 
 namespace AutoRespect.AuthorizationServer.Design.Primitives
 {
@@ -7,8 +7,8 @@ namespace AutoRespect.AuthorizationServer.Design.Primitives
     {
         public string Value { get; private set; }
         private Login(string value) => Value = value;
-        
-        public static Result<Login> Create(string login)
+
+        public static R<Login> Create(string login)
         {
             if (String.IsNullOrEmpty(login))
                 return new LoginCantBeNullOrEmpty();
@@ -20,7 +20,7 @@ namespace AutoRespect.AuthorizationServer.Design.Primitives
         public static implicit operator Login(string login) => new Login(login);
     }
 
-    public class LoginCantBeNullOrEmpty : Error
+    public class LoginCantBeNullOrEmpty : E
     {
         public LoginCantBeNullOrEmpty() : base("25EECBF8-1CE0-4C17-A627-D4F17DCDB4BA", "Login cant be empty or null")
         {

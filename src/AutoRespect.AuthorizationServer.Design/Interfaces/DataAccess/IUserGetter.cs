@@ -1,15 +1,15 @@
 ﻿using System.Threading.Tasks;
 using AutoRespect.AuthorizationServer.Design.Models;
 using AutoRespect.AuthorizationServer.Design.Primitives;
-using AutoRespect.Infrastructure.ErrorHandling;
+using AutoRespect.Infrastructure.Errors.Design;
 
 namespace AutoRespect.AuthorizationServer.Design.Interfaces.DataAccess
 {
     public interface IUserGetter
     {
-        Task<Result<User>> Get(Login login);
+        Task<R<User>> Get(Login login);
     }
-    public class UserNotFound : Error
+    public class UserNotFound : E
     {
         public string Login { get; private set; }
 

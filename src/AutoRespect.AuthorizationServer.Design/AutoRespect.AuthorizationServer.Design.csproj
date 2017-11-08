@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\submodules\AutoRespect2.0-Infrastructure\src\AutoRespect.Infrastructure.ErrorHandling\AutoRespect.Infrastructure.ErrorHandling.csproj" />
+    <ProjectReference Include="..\..\submodules\AutoRespect2.0-Infrastructure\src\AutoRespect.Infrastructure.Errors.Design\AutoRespect.Infrastructure.Errors.Design.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,7 +4,7 @@ using AutoRespect.AuthorizationServer.Design.Interfaces.DataAccess;
 using AutoRespect.AuthorizationServer.Design.Models;
 using AutoRespect.Infrastructure.DI.Design;
 using AutoRespect.Infrastructure.DI.Design.Attributes;
-using AutoRespect.Infrastructure.ErrorHandling;
+using AutoRespect.Infrastructure.Errors.Design;
 
 namespace AutoRespect.AuthorizationServer.Business
 {
@@ -18,7 +18,7 @@ namespace AutoRespect.AuthorizationServer.Business
             this.userGetter = userGetter;
         }
 
-        public async Task<Result<bool>> Audit(Credentials credentials)
+        public async Task<R<bool>> Audit(Credentials credentials)
         {
             var user = await userGetter.Get(credentials.Login);
             if (user.IsFailure) return user.Failures;

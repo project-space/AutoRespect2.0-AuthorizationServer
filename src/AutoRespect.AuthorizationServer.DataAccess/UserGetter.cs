@@ -5,7 +5,7 @@ using AutoRespect.AuthorizationServer.Design.Primitives;
 using AutoRespect.Infrastructure.DataAccess.Design;
 using AutoRespect.Infrastructure.DI.Design;
 using AutoRespect.Infrastructure.DI.Design.Attributes;
-using AutoRespect.Infrastructure.ErrorHandling;
+using AutoRespect.Infrastructure.Errors.Design;
 
 namespace AutoRespect.AuthorizationServer.DataAccess
 {
@@ -19,7 +19,7 @@ namespace AutoRespect.AuthorizationServer.DataAccess
             this.db = db;
         }
 
-        public async Task<Result<User>> Get(Login login)
+        public async Task<R<User>> Get(Login login)
         {
             var query = new Query(
                 @"select * from  Account where Login = @Login",

@@ -1,5 +1,5 @@
-using AutoRespect.Infrastructure.ErrorHandling;
 using System;
+using AutoRespect.Infrastructure.Errors.Design;
 
 namespace AutoRespect.AuthorizationServer.Design.Primitives
 {
@@ -7,12 +7,12 @@ namespace AutoRespect.AuthorizationServer.Design.Primitives
     {
         public string Value { get; private set; }
         private Email(string value) => Value = value;
-        
-        public static Result<Email> Create(string email)
+
+        public static R<Email> Create(string email)
         {
             if (String.IsNullOrEmpty(email))
                 return new EmailCantBeNullOrEmpty();
-            
+
             // TODO: REGEX FOR EMAIL
             //     return ErrorType.WrongEmailFormat;
 
@@ -23,14 +23,14 @@ namespace AutoRespect.AuthorizationServer.Design.Primitives
         public static implicit operator Email(string login) => new Email(login);
     }
 
-    public class EmailCantBeNullOrEmpty : Error
+    public class EmailCantBeNullOrEmpty : E
     {
         public EmailCantBeNullOrEmpty() : base("9A55078E-0F04-48F2-8251-F3E931C74C81", "Email can't be empty or null")
         {
         }
     }
 
-    public class EmailHasWrongFormat : Error
+    public class EmailHasWrongFormat : E
     {
         public EmailHasWrongFormat() : base("895191AE-57AB-45CA-8BF8-A7EECA593734", "Email has wrong format ... [todo: description of format]")
         {

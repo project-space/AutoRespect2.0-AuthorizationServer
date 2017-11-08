@@ -4,7 +4,7 @@ using AutoRespect.AuthorizationServer.Design.Interfaces.DataAccess;
 using AutoRespect.AuthorizationServer.Design.Models;
 using AutoRespect.Infrastructure.DI.Design;
 using AutoRespect.Infrastructure.DI.Design.Attributes;
-using AutoRespect.Infrastructure.ErrorHandling;
+using AutoRespect.Infrastructure.Errors.Design;
 using AutoRespect.Infrastructure.OAuth.Jwt;
 
 namespace AutoRespect.AuthorizationServer.Business
@@ -26,7 +26,7 @@ namespace AutoRespect.AuthorizationServer.Business
             this.tokenIssuer = tokenIssuer;
         }
 
-        public async Task<Result<string>> Authenticate(Credentials credentials)
+        public async Task<R<string>> Authenticate(Credentials credentials)
         {
             var audit = await passwordAuditor.Audit(credentials);
             if (audit.IsFailure) return audit.Failures;
@@ -34,10 +34,13 @@ namespace AutoRespect.AuthorizationServer.Business
             var user = await userGetter.Get(credentials.Login.Value);
             if (user.IsFailure) return user.Failures;
 
-            return tokenIssuer.Release(new JwtPayload
+            var claims = new JwtClaims
             {
-                AccountId = user.Value.Id
-            });
+                AccountId    = user.Value.Id,
+                AccountLogin = user.Value.Login.Value
+            };
+
+            return tokenIssuer.Release(claims);
         }
     }
 }

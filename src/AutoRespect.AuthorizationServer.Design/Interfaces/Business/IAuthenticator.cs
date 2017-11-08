@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
 using AutoRespect.AuthorizationServer.Design.Models;
-using AutoRespect.Infrastructure.ErrorHandling;
+using AutoRespect.Infrastructure.Errors.Design;
 
 namespace AutoRespect.AuthorizationServer.Design.Interfaces.Business
 {
     public interface IAuthenticator
     {
-        Task<Result<string>> Authenticate(Credentials credentials);
+        Task<R<string>> Authenticate(Credentials credentials);
     }
 }

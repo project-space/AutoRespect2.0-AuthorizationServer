@@ -1,9 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using AutoRespect.AuthorizationServer.Design.Models;
 using AutoRespect.AuthorizationServer.Design.Interfaces.Business;
-using System;
-using AutoRespect.Infrastructure.ErrorHandling.AspNetCore;
+using AutoRespect.AuthorizationServer.Design.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AutoRespect.AuthorizationServer.Api.Controllers
 {
@@ -18,8 +16,14 @@ namespace AutoRespect.AuthorizationServer.Api.Controllers
         /// Resource Owner Password Credentials Grant
         /// </summary>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Credentials credentials) => (await authenticator
-            .Authenticate(credentials))
-            .AsActionResult();
+        public async Task<IActionResult> Post([FromBody] Credentials credentials)
+        {
+            var response = await authenticator.Authenticate(credentials);
+
+            if (response.IsSuccess)
+                return Ok(response.Value);
+            else
+                return BadRequest(response.Failures);
+        }
     }
 }

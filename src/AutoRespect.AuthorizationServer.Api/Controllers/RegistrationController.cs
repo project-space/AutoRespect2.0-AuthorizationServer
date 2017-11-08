@@ -1,12 +1,7 @@
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using AutoRespect.AuthorizationServer.Design.Models;
 using AutoRespect.AuthorizationServer.Design.Interfaces.Business;
-using AutoRespect.Infrastructure.ErrorHandling.AspNetCore;
-using System.Collections.Generic;
-using AutoRespect.Infrastructure.ErrorHandling;
-using AutoRespect.AuthorizationServer.Design.Interfaces.DataAccess;
-using AutoRespect.AuthorizationServer.Design.Primitives;
+using AutoRespect.AuthorizationServer.Design.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AutoRespect.AuthorizationServer.Api.Controllers
 {
@@ -21,8 +16,14 @@ namespace AutoRespect.AuthorizationServer.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Credentials credentials) => (await userRegistrar
-            .Register(credentials))
-            .AsActionResult();
+        public async Task<IActionResult> Post([FromBody] Credentials credentials)
+        {
+            var response = await userRegistrar.Register(credentials);
+
+            if (response.IsSuccess)
+                return Ok(response.Value);
+            else
+                return BadRequest(response.Failures);
+        }
     }
 }

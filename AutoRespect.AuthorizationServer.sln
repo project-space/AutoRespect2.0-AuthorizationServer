@@ -17,10 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{003C7D25-2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastructure", "{4FC4D3E8-0248-4E7F-8F8C-BA65539FB6AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoRespect.Infrastructure.ErrorHandling", "submodules\AutoRespect2.0-Infrastructure\src\AutoRespect.Infrastructure.ErrorHandling\AutoRespect.Infrastructure.ErrorHandling.csproj", "{2AD15FF3-DB51-4C73-9A51-9EDF988B7E38}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoRespect.Infrastructure.ErrorHandling.AspNetCore", "submodules\AutoRespect2.0-Infrastructure\src\AutoRespect.Infrastructure.ErrorHandling.AspNetCore\AutoRespect.Infrastructure.ErrorHandling.AspNetCore.csproj", "{F6198BEA-A0C9-4371-A730-44D83D4D8B98}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoRespect.Infrastructure.OAuth.Jwt", "submodules\AutoRespect2.0-Infrastructure\src\AutoRespect.Infrastructure.OAuth.Jwt\AutoRespect.Infrastructure.OAuth.Jwt.csproj", "{11B1671C-D792-4600-ACBF-D3E4FCEF6A7A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoRespect.Infrastructure.DI.Design", "submodules\AutoRespect2.0-Infrastructure\src\AutoRespect.Infrastructure.DI.Design\AutoRespect.Infrastructure.DI.Design.csproj", "{C37B67BE-6C45-4278-9542-D78123FB235F}"
@@ -34,6 +30,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoRespect.Infrastructure.ServiceDiscovery.Design", "submodules\AutoRespect2.0-Infrastructure\src\AutoRespect.Infrastructure.ServiceDiscovery.Design\AutoRespect.Infrastructure.ServiceDiscovery.Design.csproj", "{5882B704-D0B6-4789-9091-8D5E0EB1511B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoRespect.Infrastructure.ServiceDiscovery", "submodules\AutoRespect2.0-Infrastructure\src\AutoRespect.Infrastructure.ServiceDiscovery\AutoRespect.Infrastructure.ServiceDiscovery.csproj", "{EEB041F2-2FA5-4AA3-8B23-3F66104B4286}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoRespect.Infrastructure.Errors.Design", "submodules\AutoRespect2.0-Infrastructure\src\AutoRespect.Infrastructure.Errors.Design\AutoRespect.Infrastructure.Errors.Design.csproj", "{EE4AFE77-8BB9-4616-BAA1-44EAAABC8052}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,14 +55,6 @@ Global
 		{142D428B-402C-46E6-A238-4B00DFF23245}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{142D428B-402C-46E6-A238-4B00DFF23245}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{142D428B-402C-46E6-A238-4B00DFF23245}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2AD15FF3-DB51-4C73-9A51-9EDF988B7E38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2AD15FF3-DB51-4C73-9A51-9EDF988B7E38}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2AD15FF3-DB51-4C73-9A51-9EDF988B7E38}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2AD15FF3-DB51-4C73-9A51-9EDF988B7E38}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F6198BEA-A0C9-4371-A730-44D83D4D8B98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F6198BEA-A0C9-4371-A730-44D83D4D8B98}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F6198BEA-A0C9-4371-A730-44D83D4D8B98}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F6198BEA-A0C9-4371-A730-44D83D4D8B98}.Release|Any CPU.Build.0 = Release|Any CPU
 		{11B1671C-D792-4600-ACBF-D3E4FCEF6A7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{11B1671C-D792-4600-ACBF-D3E4FCEF6A7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11B1671C-D792-4600-ACBF-D3E4FCEF6A7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -93,6 +83,10 @@ Global
 		{EEB041F2-2FA5-4AA3-8B23-3F66104B4286}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEB041F2-2FA5-4AA3-8B23-3F66104B4286}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEB041F2-2FA5-4AA3-8B23-3F66104B4286}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE4AFE77-8BB9-4616-BAA1-44EAAABC8052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE4AFE77-8BB9-4616-BAA1-44EAAABC8052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE4AFE77-8BB9-4616-BAA1-44EAAABC8052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE4AFE77-8BB9-4616-BAA1-44EAAABC8052}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,8 +97,6 @@ Global
 		{DB6709CE-07ED-431C-962F-D8953F36BB6E} = {4067622D-2875-41F4-9386-2BADFEEA767C}
 		{142D428B-402C-46E6-A238-4B00DFF23245} = {4067622D-2875-41F4-9386-2BADFEEA767C}
 		{4FC4D3E8-0248-4E7F-8F8C-BA65539FB6AD} = {003C7D25-2EEB-4807-8A90-EA05C3D7D520}
-		{2AD15FF3-DB51-4C73-9A51-9EDF988B7E38} = {4FC4D3E8-0248-4E7F-8F8C-BA65539FB6AD}
-		{F6198BEA-A0C9-4371-A730-44D83D4D8B98} = {4FC4D3E8-0248-4E7F-8F8C-BA65539FB6AD}
 		{11B1671C-D792-4600-ACBF-D3E4FCEF6A7A} = {4FC4D3E8-0248-4E7F-8F8C-BA65539FB6AD}
 		{C37B67BE-6C45-4278-9542-D78123FB235F} = {4FC4D3E8-0248-4E7F-8F8C-BA65539FB6AD}
 		{AC0F2A08-95A7-4CC9-BE8A-62A0748D201A} = {4FC4D3E8-0248-4E7F-8F8C-BA65539FB6AD}
@@ -112,6 +104,7 @@ Global
 		{533744ED-7CD4-45C5-A198-E765A30788DE} = {4FC4D3E8-0248-4E7F-8F8C-BA65539FB6AD}
 		{5882B704-D0B6-4789-9091-8D5E0EB1511B} = {4FC4D3E8-0248-4E7F-8F8C-BA65539FB6AD}
 		{EEB041F2-2FA5-4AA3-8B23-3F66104B4286} = {4FC4D3E8-0248-4E7F-8F8C-BA65539FB6AD}
+		{EE4AFE77-8BB9-4616-BAA1-44EAAABC8052} = {4FC4D3E8-0248-4E7F-8F8C-BA65539FB6AD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CE4A5909-EF45-4571-B14E-0095528EFB45}

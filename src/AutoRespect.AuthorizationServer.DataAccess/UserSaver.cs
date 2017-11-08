@@ -4,7 +4,7 @@ using AutoRespect.AuthorizationServer.Design.Models;
 using AutoRespect.Infrastructure.DataAccess.Design;
 using AutoRespect.Infrastructure.DI.Design;
 using AutoRespect.Infrastructure.DI.Design.Attributes;
-using AutoRespect.Infrastructure.ErrorHandling;
+using AutoRespect.Infrastructure.Errors.Design;
 
 namespace AutoRespect.AuthorizationServer.DataAccess
 {
@@ -18,7 +18,7 @@ namespace AutoRespect.AuthorizationServer.DataAccess
             this.db = db;
         }
 
-        public async Task<Result<int>> Save(User user)
+        public async Task<R<int>> Save(User user)
         {
             const string sqlScript = @"
                 if exists (select 1 from Account where Id = @Id) 
@@ -42,9 +42,10 @@ namespace AutoRespect.AuthorizationServer.DataAccess
 
                 select @Id";
 
-            var query = new Query(sqlScript, new {
-                Id       = user.Id,
-                Login    = user.Login.Value,
+            var query = new Query(sqlScript, new
+            {
+                Id = user.Id,
+                Login = user.Login.Value,
                 Password = user.Password.Value
             });
 
