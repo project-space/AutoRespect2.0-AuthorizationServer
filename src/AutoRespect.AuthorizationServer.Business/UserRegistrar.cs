@@ -28,7 +28,7 @@ namespace AutoRespect.AuthorizationServer.Business
             this.tokenIssuer = tokenIssuer;
         }
 
-        public async Task<R<string>> Register(Credentials credentials)
+        public async Task<R<Tokens>> Register(Credentials credentials)
         {
             var loginIsBussy = await LoginIsBussy(credentials.Login);
             if (loginIsBussy.IsFailure) return loginIsBussy.Failures;
@@ -36,19 +36,23 @@ namespace AutoRespect.AuthorizationServer.Business
 
             var user = new User { Login = credentials.Login, Password = credentials.Password };
             var save = await userSaver.Save(user);
-
-            if (save.IsFailure) return save.Failures;
+            if (save.IsFailure)
+                return save.Failures;
 
             user.Id = save.Value;
 
-            var claims = new JwtClaims
+
+            var accessToken = tokenIssuer.Release(CreateClaims(user));
+
+            return new Tokens { AccessToken = accessToken };
+        }
+
+        private static JwtClaims CreateClaims(User user) =>
+            new JwtClaims
             {
                 AccountId = user.Id,
                 AccountLogin = user.Login.Value
             };
-
-            return tokenIssuer.Release(claims);
-        }
 
         //TODO: Move to LoginIsBussyChecker
         private async Task<R<bool>> LoginIsBussy(Login login)

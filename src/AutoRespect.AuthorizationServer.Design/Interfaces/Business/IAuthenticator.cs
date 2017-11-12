@@ -6,6 +6,6 @@ namespace AutoRespect.AuthorizationServer.Design.Interfaces.Business
 {
     public interface IAuthenticator
     {
-        Task<R<string>> Authenticate(Credentials credentials);
+        Task<R<Tokens>> Authenticate(Credentials credentials);
     }
 }

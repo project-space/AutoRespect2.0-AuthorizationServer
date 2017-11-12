@@ -7,7 +7,7 @@ namespace AutoRespect.AuthorizationServer.Design.Interfaces.Business
 {
     public interface IUserRegistrar
     {
-        Task<R<string>> Register(Credentials credentials);
+        Task<R<Tokens>> Register(Credentials credentials);
     }
 
     public class LoginAlreadyBussy : E

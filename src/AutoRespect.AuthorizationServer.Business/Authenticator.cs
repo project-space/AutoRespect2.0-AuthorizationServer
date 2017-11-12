@@ -26,7 +26,7 @@ namespace AutoRespect.AuthorizationServer.Business
             this.tokenIssuer = tokenIssuer;
         }
 
-        public async Task<R<string>> Authenticate(Credentials credentials)
+        public async Task<R<Tokens>> Authenticate(Credentials credentials)
         {
             var audit = await passwordAuditor.Audit(credentials);
             if (audit.IsFailure) return audit.Failures;
@@ -36,11 +36,13 @@ namespace AutoRespect.AuthorizationServer.Business
 
             var claims = new JwtClaims
             {
-                AccountId    = user.Value.Id,
+                AccountId = user.Value.Id,
                 AccountLogin = user.Value.Login.Value
             };
 
-            return tokenIssuer.Release(claims);
+            var accessToken = tokenIssuer.Release(claims);
+
+            return new Tokens { AccessToken = accessToken };
         }
     }
 }
